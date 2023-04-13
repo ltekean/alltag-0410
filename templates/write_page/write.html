@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h5 class="mt-0">나의 이야기를 적어주세요</h5>
+<p>
+<form action="/create/" method="POST">
+    {% csrf_token %}
+    <div>
+        <label for="title">제목</label><br>
+        <input type="text" name="title" id="title">
+    </div>
+    <div>
+        <label for="content">내용</label><br>
+        <textarea name="content" id="content" cols="30" rows="10"></textarea>
+    </div>
+    <input type="submit" value="글쓰기" />
+</form>
+</p>
+{% endblock %}
