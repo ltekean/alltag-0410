@@ -1,3 +1,4 @@
+
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from .models import PageModel
@@ -19,3 +20,4 @@ def Page(request):
     # my_page.content = request.POST.get('my-content', '')  # 모델에 글 저장
     # my_page.save()
     # return redirect('/main')
+

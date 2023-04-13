@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import PageModel
+from .models import headModel
 
 # Register your models here.
-admin.site.register(PageModel) # PageModel을 Admin에 추가
+admin.site.register(headModel)
+
