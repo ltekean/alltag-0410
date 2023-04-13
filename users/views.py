@@ -1,3 +1,4 @@
+
 from django.shortcuts import render ,redirect
 from .models import UserModel
 from django.http import HttpResponse
@@ -42,6 +43,3 @@ def sign_in_view(request):
           
       elif request.method == 'GET':
         return render(request, 'user/signin.html')
-      
-
-      

@@ -1,4 +1,4 @@
-#user/models.py
+
 from django.db import models
 
 
@@ -11,3 +11,5 @@ class UserModel(models.Model):
     password = models.CharField(max_length=30, null=False)
     nickname = models.CharField(max_length=20, default='None')
    
+
+

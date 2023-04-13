@@ -3,3 +3,4 @@ from .models import headModel
 
 # Register your models here.
 admin.site.register(headModel)
+
