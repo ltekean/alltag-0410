@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import WriteModel
+from .models import WriteModel,UserModel
 from django.contrib.auth.decorators import login_required
 
 
@@ -11,20 +11,25 @@ def main(request):
         return redirect("/sign-in")
 
 
-@login_required
+
 def detail_page_view(request, writes_id):
-    return render(request, "write_page/detail.html")
-
-
-@login_required
-def main_page_view(request):
     if request.method == "GET":  # 요청하는 방식이 GET 방식인지 확인하기
         user = request.user.is_authenticated  # 사용자가 로그인이 되어 있는지 확인하기
         if user:  # 로그인 한 사용자라면
+            one_writes = WriteModel.objects.get(id=writes_id)
+            return render(request, "write_page/detail.html",{"writes":one_writes})
+        else:
+            return redirect("/sign-in")
+
+
+def main_page_view(request):
+    # if request.method == "GET":  # 요청하는 방식이 GET 방식인지 확인하기
+        # user = request.user.is_authenticated  # 사용자가 로그인이 되어 있는지 확인하기
+        # if user:  # 로그인 한 사용자라면
             all_write = WriteModel.objects.all().order_by("-created_at")
             return render(request, "write_page/main.html", {"writes": all_write})
-        else:  # 로그인이 되어 있지 않다면
-            return redirect("/sign-in")
+        # else:                               # 로그인이 되어 있지 않다면
+        #     return redirect("/sign-in")
 
 
 @login_required
@@ -53,3 +58,34 @@ def write_page_create(request):
         )
         return redirect("/main-page")
         # redirect("/main-page")
+
+
+@login_required
+def write_page_edit(request, writes_id):
+    writes = WriteModel.objects.get(id=writes_id)
+    if request.method == "GET":
+        if writes.author_id == request.user.id:
+            return render(request,"write_page/edit.html")
+        else:
+            return redirect("/")
+    else:
+        writes.title = request.POST["title"]
+        writes.content = request.POST["content"]
+        writes.save()
+        return redirect("/main-page")
+
+
+@login_required
+def write_page_delete(request, writes_id):
+    writes = WriteModel.objects.get(id=writes_id)
+    # print(id)
+    # print(writes.author_id) >>2
+    # print(UserModel.objects.get(id=request.user.id()))
+    if writes.author_id == request.user.id:
+        writes.delete()
+        return redirect("/")
+    return redirect("/")
+
+    # login_session = request.sessions.get('login_session','')
+    # writes = WriteModel.objects.get(id=pk)
+    # if writes

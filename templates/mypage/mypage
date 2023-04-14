@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <form class="post-form" action="{% url 'modify' %}" method="post" enctype="multipart/form-data">
+        
+        <div class="form-group">
+            <label for="post_img">이미지 등록/변경</label>
+            <input type="file" class="form-control-file" id="post_img" name="post_img">
+        </div>
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="닉네임 변경" aria-label="Recipient's username with two button addons">
+            <button class="btn btn-outline-secondary" type="button">Button</button>
+        </div>
+    </form>
+
+{% endblock %}
+
+<!-- 
+{% if post.post_img %}
+            <img class="post-image"
+                src="{{ post.post_img.url }}" 
+                alt="post image" 
+                style="width:50vw ; max-width:500px"
+            >
+        {% endif %} -->

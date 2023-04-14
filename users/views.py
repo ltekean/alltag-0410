@@ -60,3 +60,17 @@ def sign_in_view(request):
 def logout(request):
     auth.logout(request)
     return redirect("/")
+
+# @login_required()
+# def profile_update(request):
+#     user = get_object_or_404(User, pk=request.user.pk)
+#     if request.method == 'POST':
+#         form = UserModel(request.POST)
+#         if form is valid():
+#             profile = form.save(commit=False)
+#             profile.user = request.user
+#             profile.save()
+#             return redirect("/", user.pk)
+
+#     return render(request, 'write_page/main.html')
+            

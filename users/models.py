@@ -10,4 +10,4 @@ class UserModel(AbstractUser):
 
     nickname = models.CharField(max_length=20, default="None")
     # profile_img = models.ImageField(null=True, upload_to="", blank=True)
-    follow = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="followee")
+    my_image = models.FileField("이미지 파일 등록", null=True, blank=True, upload_to="")

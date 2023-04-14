@@ -6,29 +6,28 @@
 {% block content %}
 <div class="container">
     <div class="wrap">
-        <h2 class="title-center"> 글 상세보기</h2>
-        <form action="/create/" method="POST">
+        <h2 class="title-center"> SSAP 상세보기</h2>
             {% csrf_token %}
             <div class="form-group mt-2 mb-2">
                 <label for="title">DETAIL</label>
                 <div class="card">
                     <div class="card-body">
-                        <p class="mt-0">{{ wt.title }} 제목 들어갈 자리</p>
-                        <p style="float: right;">{{ wt.title }} 프로필 사진, 작성자 이름</p>
+                        <p class="mt-0">{{ writes.title }}</p>
+                        <p style="float: right;">{{ writes.nickname }}</p>
                     </div>
                 </div>
             </div>
-                <div class="card">
-                    <div class="card-body">
-                        <p>글 내용이 들어오면 됩니다용</p>
-                    </div>
+            <div class="card">
+                <div class="card-body">
+                    <p>{{ writes.content }}</p>
                 </div>
-            <hr>
+            </div> 
+        <hr>
             <div style="float: right">
-                <button type="submit" class="btn btn-primary" href="#" />수정</button>
-                <button type="submit" class="btn btn-primary" href="#" />공유</button>
-            </div>
-        </form>
+                <a class="btn btn-primary" href="edit/">수정</a>
+                <a class="btn btn-primary" href="delete/">삭제</a>
+            </div>  
     </div>
 </div>
 {% endblock %}
+

@@ -4,15 +4,24 @@
 {% block content %}
 <div class="container timeline-container">
     <div class="row">
+        {% if user.is_authenticated %}
         <!-- 왼쪽 컬럼 -->
         <div class="col-md-3">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">{{ user.username }}</h5>
-                    <p class="card-text"> 안녕하세요?{{ user.nickname }}님, 오늘도 ALLTAG과 함께 좋은 하루되세요!</p>
+                    <p class="card-text"> 안녕하세요?{{ user.nickname }}님, 오늘도 ALLSSAP과 함께 좋은 하루되세요!</p>
                 </div>
             </div>
         </div>
+        {% else %}
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <p class="card-text"> 세상에 모든 SSAP, 지금 바로 저희와 함께하세요!</p>
+                </div>
+            </div>
+        </div>
+        {% endif %}
 
         <!-- 오른 쪽 컬럼-->
 
@@ -24,14 +33,14 @@
                         <div class="card-body">
                             <div class="media">
                                 <div class="media-body">
-                                    <h5 class="mt-0">나의 이야기를 적어주세요</h5>
+                                    <h5 class="mt-0">나의 SSAP소리를 적어주세요</h5>
                                     <p>
                                     <form>
                                         <div class="form-group mb-2">
                                             <textarea class="form-control" style="resize: none" name='my-content'
                                                 id="my-content"></textarea>
                                         </div>
-                                        <button type="submit" class="btn btn-primary" style="float:right;">작성하기</button>
+                                        <button type="submit" class="btn btn-primary" style="float:right;">SSAP하기</button>
                                     </form>
                                     </p>
                                 </div>
