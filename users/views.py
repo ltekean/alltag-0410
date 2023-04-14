@@ -23,20 +23,16 @@ def sign_up_view(request):
         if password != password2:
             return render(request, "user/signup.html", {"error": "password를 확인 해 주세요!"})
         else:
-            if username == "" or password == "":
+            if username == "" or password == "" or nickname =="":
                 return render(
-                    request, "user/signup.html", {"error": "사용자 이름과 비밀번호는 필수 값 입니다"}
+                    request, "user/signup.html", {"error": "사용자 이름과 비밀번호, 닉네임은 필수로 입력 해 주세요."}
                 )
 
             exist_user = get_user_model().objects.filter(username=username)
             if exist_user:
-                return render(request, "user/signup.html")
+                return render(request, 'user/signup.html', {'error':'사용자가 존재합니다.'})  # 사용자가 존재하기 때문에 사용자를 저장하지 않고 회원가입 페이지를 다시 띄움
             else:
-                UserModel.objects.create_user(
-                    username=username,
-                    password=password,
-                    nickname=nickname,
-                )
+                UserModel.objects.create_user(username=username,password=password,nickname=nickname)
                 return redirect("/sign-in")
 
 
