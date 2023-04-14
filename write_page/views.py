@@ -12,6 +12,11 @@ def main(request):
 
 
 @login_required
+def detail_page_view(request, writes_id):
+    return render(request, "write_page/detail.html")
+
+
+@login_required
 def main_page_view(request):
     if request.method == "GET":  # 요청하는 방식이 GET 방식인지 확인하기
         user = request.user.is_authenticated  # 사용자가 로그인이 되어 있는지 확인하기
