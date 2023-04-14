@@ -1,0 +1,21 @@
+.title-center {
+    text-align: center;
+    margin-top: 50px;
+    color: aliceblue;
+}
+
+.wrap {
+
+    width: 400px;
+
+    margin: 0 auto;
+}
+
+.form-area {
+    margin-top: 25px;
+}
+
+.timeline-container {
+
+    margin-top: 15px
+}
