@@ -9,5 +9,5 @@ class UserModel(AbstractUser):
         db_table = "all_users"
 
     nickname = models.CharField(max_length=20, default="None")
+    image = models.ImageField(upload_to="", null=True, blank=True)
     # profile_img = models.ImageField(null=True, upload_to="", blank=True)
-    my_image = models.FileField("이미지 파일 등록", null=True, blank=True, upload_to="")

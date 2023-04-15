@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="wrap">
+        <h2 class="title-center"> 정보 수정</h2>
+        <div style="float:left">
+            <form class="post-form" action="/my-page/{{user.id}}/" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div>
+                    {% if user.image %}
+                    <img src="{{ user.image.url }}" style="width: 80px; height: 80px; border-radius: 50%;">
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    <label for="post_img">이미지 등록/변경</label>
+                    <input type="file" class="form-control-file" id="image" name="image">
+                </div>
+                <div class="input-group">
+                    <button class="btn btn-primary" type="submit">이미지 저장</button>
+                </div>
+            </form>
+
+            <form action="/my-page/{{user.id}}/delete-image" method="POST">
+                {% csrf_token %}
+            <div class="input-group">
+                <button class="btn btn-primary" type="submit">이미지 삭제</button>
+            </div>
+            </form>
+            <form action="/my-page/{{user.id}}/change-nickname" method="POST">
+                {% csrf_token %}
+            <div class="input-group">
+                <input type="text" name="nickname" id="nickname" class="form-control" value="{{user.nickname}}" aria-label="Recipient's username with two button addons">
+                <button class="btn btn-primary" type="submit">닉네임 변경</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+<!-- 
+{% if post.post_img %}
+            <img class="post-image"
+                src="{{ post.post_img.url }}" 
+                alt="post image" 
+                style="width:50vw ; max-width:500px"
+            >
+        {% endif %} -->

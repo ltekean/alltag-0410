@@ -61,16 +61,33 @@ def logout(request):
     auth.logout(request)
     return redirect("/")
 
-# @login_required()
-# def profile_update(request):
-#     user = get_object_or_404(User, pk=request.user.pk)
-#     if request.method == 'POST':
-#         form = UserModel(request.POST)
-#         if form is valid():
-#             profile = form.save(commit=False)
-#             profile.user = request.user
-#             profile.save()
-#             return redirect("/", user.pk)
 
-#     return render(request, 'write_page/main.html')
+
+@login_required
+def my_page(request,user_id):
+    users = UserModel.objects.get(id=user_id)
+    if request.method == 'POST':
+        users.image = request.FILES.get('image')
+        users.save()
+        return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
+    else:
+        return render(request, 'user/mypage.html')
             
+
+@login_required
+def profile_img_delete(request, user_id):
+    users = UserModel.objects.get(id=user_id)
+    if users.id == request.user.id:
+        users.image.delete()
+        return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
+    return redirect("/")
+
+@login_required
+def change_nickname(request, user_id):
+    users = UserModel.objects.get(id=user_id)
+    if request.method == 'POST':
+        users.nickname = request.POST.get('nickname')
+        users.save()
+        return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
+    return render('/')
+    
